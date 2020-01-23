@@ -1,3 +1,8 @@
 <div class="board" *ngIf="tiles">
-  <div *ngFor="let tile of tiles" [tile]="tile" app-tile></div>
+  <div
+    *ngFor="let tile of tiles"
+    [tile]="tile"
+    app-tile
+    (move)="onMove(tile)"
+  ></div>
 </div>

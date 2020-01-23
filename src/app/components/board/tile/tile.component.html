@@ -1,1 +1,3 @@
-<span [ngClass]="{ item: true, empty: tile.empty }">{{ tile.number }}</span>
+<span [ngClass]="{ item: true, empty: tile.empty }" (click)="onClick()">{{
+  tile.number
+}}</span>

@@ -20,8 +20,16 @@ export class UtilsService {
     return inv_count % 2 == 0;
   }
 
+  static shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+  }
+
   // Possible neighbours indexes on 3x3 board
-  getTileNeighbours(index: number): number[] {
+  static getTileNeighbours(index: number): number[] {
     const neighbours = {
       0: [1, 3],
       1: [0, 2, 4],

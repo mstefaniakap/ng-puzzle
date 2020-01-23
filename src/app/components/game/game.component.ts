@@ -20,28 +20,51 @@ export class GameComponent implements OnInit {
 
   resetGame() {
     this.moves = 0;
-    this._resetTiles(9);
+    this.resetTiles(9);
   }
 
-  private _resetTiles(count: number = 9): void {
+  onMove(tile: Tile) {
+    this.move(tile);
+  }
+
+  move(tile: Tile) {
+    console.log("checking move possibility");
+    const clickedTileIndex = this.tiles.indexOf(tile);
+    const emptyTileIndex = this.tiles.map(item => item.empty).indexOf(true);
+
+    if (
+      emptyTileIndex >= 0 &&
+      UtilsService.getTileNeighbours(clickedTileIndex).indexOf(
+        emptyTileIndex
+      ) >= 0
+    ) {
+      this.moves++;
+      this.tiles[emptyTileIndex].update(
+        this.tiles[clickedTileIndex].number,
+        this.tiles[clickedTileIndex].order,
+        false
+      );
+      this.tiles[clickedTileIndex].update(
+        0,
+        this.tiles[emptyTileIndex].order,
+        true
+      );
+
+      // @todo isCorrectOrder()
+    }
+  }
+
+  resetTiles(count: number = 9): void {
     this.tiles = [];
     const range = Array.from(Array(count).keys());
-    let shuffled = this._shuffle(range);
+    let shuffled = UtilsService.shuffle(range);
 
     while (!UtilsService.isSolvable(shuffled)) {
-      shuffled = this._shuffle(range);
+      shuffled = UtilsService.shuffle(range);
     }
 
     shuffled.map((number, order) => {
       this.tiles.push(new Tile(number, order, number === 0));
     });
-  }
-
-  private _shuffle(a) {
-    for (let i = a.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [a[i], a[j]] = [a[j], a[i]];
-    }
-    return a;
   }
 }

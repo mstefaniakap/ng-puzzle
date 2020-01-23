@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from "@angular/core";
+import { Component, OnInit, Input, Output, EventEmitter } from "@angular/core";
 import { Tile } from "./../../../model/Tile";
 
 @Component({
@@ -8,9 +8,13 @@ import { Tile } from "./../../../model/Tile";
 })
 export class TileComponent implements OnInit {
   @Input() tile: Tile;
+  @Output() move = new EventEmitter<Tile>();
+
   constructor() {}
 
-  ngOnInit() {
-    console.log(this.tile);
+  ngOnInit() {}
+
+  onClick() {
+    this.move.emit(this.tile);
   }
 }
