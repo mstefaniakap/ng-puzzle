@@ -1,0 +1,16 @@
+.game-reset {
+  position: absolute;
+  bottom: 70px;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+  cursor: pointer;
+  background-color: #333333;
+  border-radius: 4px;
+  display: inline-block;
+  padding: 20px 40px;
+  color: #ffffff;
+  transition: background-color 200ms;
+  &:hover {
+    background-color: #000000;
+  }
+}

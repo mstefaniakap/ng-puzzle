@@ -1,0 +1,42 @@
+.board {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vh;
+  height: 50vh;
+  padding: 1px;
+  justify-content: space-between;
+  border-radius: 4px;
+  > div {
+    box-sizing: border-box;
+    width: 33%;
+    height: 33%;
+    display: flex;
+    span {
+      background: #c1a92f;
+      border-radius: 4px;
+      cursor: pointer;
+      display: flex;
+      width: 100%;
+      height: 100%;
+      justify-content: center;
+      align-items: center;
+      font-size: 50px;
+      transition: background 200ms, color 200ms;
+
+      &.empty {
+        background: transparent;
+        cursor: default;
+        font-size: 0;
+      }
+    }
+  }
+}
+
+.board > div .board > div span:not(.empty):hover {
+  background: #e2c117;
+}
+
+.board.done > div span {
+  background: #529019;
+  color: #ffffff;
+}
