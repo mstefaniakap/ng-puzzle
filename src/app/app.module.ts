@@ -10,7 +10,7 @@ import { GameComponent } from './components/game/game.component';
 
 @NgModule({
   declarations: [AppComponent, StatsComponent, ToolsComponent, BoardComponent, TileComponent, GameComponent],
-  imports: [BrowserModule],
+  imports: [BrowserModule.withServerTransition({ appId: 'serverApp' })],
   providers: [],
   bootstrap: [AppComponent]
 })
