@@ -17,6 +17,7 @@ import { Tile } from "./../../model/Tile";
 })
 export class BoardComponent implements OnInit {
   @Input() tiles: Tile[];
+  @Input() isSolved: boolean;
   @Output() move = new EventEmitter<Tile>();
 
   constructor() {}

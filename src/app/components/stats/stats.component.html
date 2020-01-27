@@ -1,4 +1,5 @@
 <div class="statistics">
   <h3>Statistics</h3>
-  <p><strong>Moves:</strong> {{ moves }}</p>
+  <p [ngStyle]="{ color: color }"><strong>Moves:</strong> {{ moves }}</p>
 </div>
+<div *ngIf="isSolved" class="solved">Solved! You're the man! :)</div>

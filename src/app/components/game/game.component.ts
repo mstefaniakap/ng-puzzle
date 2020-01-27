@@ -11,6 +11,7 @@ import { UtilsService } from "./../../services/utils.service";
 export class GameComponent implements OnInit {
   @Output() moves: number;
   @Output() tiles: Tile[];
+  @Output() isSolved: boolean = false;
 
   constructor() {}
 
@@ -28,7 +29,6 @@ export class GameComponent implements OnInit {
   }
 
   move(tile: Tile) {
-    console.log("checking move possibility");
     const clickedTileIndex = this.tiles.indexOf(tile);
     const emptyTileIndex = this.tiles.map(item => item.empty).indexOf(true);
 
@@ -50,12 +50,26 @@ export class GameComponent implements OnInit {
         true
       );
 
-      // @todo isCorrectOrder()
+      if (this.isCorrectOrder()) {
+        this.isSolved = true;
+      }
     }
+  }
+
+  isCorrectOrder() {
+    var correctItems = this.tiles.filter((item, index) => {
+      return (
+        item.number - 1 === index ||
+        (index === this.tiles.length - 1 && item.number === 0)
+      );
+    });
+
+    return correctItems.length > 1 && correctItems.length === this.tiles.length;
   }
 
   resetTiles(count: number = 9): void {
     this.tiles = [];
+    this.isSolved = false;
     const range = Array.from(Array(count).keys());
     let shuffled = UtilsService.shuffle(range);
 

@@ -1,3 +1,7 @@
-<app-board [tiles]="tiles" (move)="onMove($event)"></app-board>
-<app-stats [moves]="moves"></app-stats>
+<app-board
+  [tiles]="tiles"
+  [isSolved]="isSolved"
+  (move)="onMove($event)"
+></app-board>
+<app-stats [moves]="moves" [isSolved]="isSolved"></app-stats>
 <app-tools (resetGame)="resetGame()"></app-tools>

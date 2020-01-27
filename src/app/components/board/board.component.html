@@ -1,4 +1,4 @@
-<div class="board" *ngIf="tiles">
+<div [ngClass]="{ board: true, done: isSolved }" *ngIf="tiles">
   <div
     *ngFor="let tile of tiles"
     [tile]="tile"
